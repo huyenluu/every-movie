@@ -1,0 +1,34 @@
+.appContainer {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.appLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: var(--padding-inline-mobile);
+}
+
+.page-title {
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: rgb(var(--color-light-grey));
+    text-align: left;
+}
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: rgb(var(--color-light-grey));
+    cursor: pointer;
+}
+

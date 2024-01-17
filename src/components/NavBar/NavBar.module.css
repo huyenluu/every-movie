@@ -1,0 +1,50 @@
+.navBar {
+    background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-inline-mobile);
+    height: 8rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-white);
+    width: 10rem;
+    line-height: 0.9;
+}
+.logoIcon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 18rem;
+    border-radius: 3px;
+    border: 1px solid rbg(var(--color-light-grey));
+    background-color: rgb(var(--color-mid-grey));
+    padding: 0.5rem;
+    color: var(--color-white);
+    font-size: 1.2rem;
+}
+
+.heart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}

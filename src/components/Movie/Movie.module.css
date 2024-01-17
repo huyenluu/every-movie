@@ -1,0 +1,61 @@
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    width: 100%;
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.movie-thumbnail {
+    width: 12rem;
+    height: 25rem;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.movie-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.movie-thumbnail img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.movie-thumbnail .title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.movie-thumbnail p {
+    font-size: 1rem;
+}
+.action-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.action-section button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.action-section .heart-x-icon {
+    fill: red;
+    stroke: red;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
