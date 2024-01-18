@@ -24,19 +24,42 @@
     height: 3rem;
     margin-right: 1rem;
 }
-
-.searchBar {
+.search-bar {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    position: relative;
+    margin-right: 2rem;
+}
+.search-input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     height: 2.5rem;
-    width: 18rem;
+    width: 13rem;
     border-radius: 3px;
-    border: 1px solid rbg(var(--color-light-grey));
+    border: 1px solid rgb(var(--color-light-grey));
     background-color: rgb(var(--color-mid-grey));
     padding: 0.5rem;
     color: var(--color-white);
     font-size: 1.2rem;
+    transition: width 0.3s ease;
+}
+
+.search-input:active,
+.search-input:focus {
+    width: 18rem;
+    outline: none;
+}
+.clear-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    position:absolute;
+    top: 5px;
+    right: 5px;
+    fill: rgb(var(--color-light-grey));
 }
 
 .heart-icon {

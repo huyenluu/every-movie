@@ -38,13 +38,15 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
       return year;
     };
 
+    const imagePath = posterPath === null ? "https://via.placeholder.com/500x750?text=No+Image+Available" : `${IMAGE_URL_BASE}${posterPath}` ;
+  
     return (
       <div
         ref={thumbnailRef}
         id="movie-thumbnails"
         className={styles["movie-thumbnail"]}
       >
-        <img src={`${IMAGE_URL_BASE}${posterPath}`} alt={title} />
+        <img src={imagePath} alt={title}  />
         <h3 className={styles["title"]}>{titleRef.current}</h3>
         <div className={styles["action-section"]}>
           <p>{releaseDate ? calcYear(releaseDate) : "--"}</p>
@@ -65,7 +67,7 @@ export default MovieThumbnail;
 
 MovieThumbnail.propTypes = {
     title: PropTypes.string.isRequired,
-    posterPath: PropTypes.string.isRequired,
+    posterPath: PropTypes.string,
     releaseDate: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
 };

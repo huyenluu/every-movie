@@ -25,7 +25,21 @@ export const fetchDefaultMovies = async () => {
 };
 
 // to-do: search for movies by query
-
+export const searchMovies = async (query) => {
+    try {
+        const response = await fetch(`${baseURL}${requests.searchMovies}&query=${query}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if(data.results.length === 0) {
+            throw new Error('No results found');
+        }
+        return data.results;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
 
 // to-do: fetch movies by category
 

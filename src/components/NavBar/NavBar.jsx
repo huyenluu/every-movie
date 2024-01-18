@@ -1,9 +1,12 @@
-import styles from './NavBar.module.css';
+
+import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { BiMoviePlay } from "react-icons/bi";
 import { RiHeartLine } from "react-icons/ri";
-import { Link } from 'react-router-dom';
+import Search from './Search';
+import styles from './NavBar.module.css';
 
-const NavBar = () => {
+const NavBar = ({onSearch, haveSearchBar}) => {
     return (
         <div className={styles.navBar}>
             <Link to="/">
@@ -12,7 +15,7 @@ const NavBar = () => {
                     <h1>Every Movie</h1>
                 </div>
             </Link>
-            <input className={styles.searchBar} type="text" placeholder="Search..." />
+            {haveSearchBar && <Search onSearch={onSearch}/>}
             <Link to="/favorites">
                 <RiHeartLine className={styles['heart-icon']} />
             </Link>
@@ -21,3 +24,8 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+NavBar.propTypes = {
+    onSearch: propTypes.func,
+    haveSearchBar: propTypes.bool
+}
