@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { searchMovies, fetchDefaultMovies } from "../services/apiService";
-
+// 
 // Initial state
 const initialState = {
   movies: [],
@@ -49,6 +49,7 @@ const setFavorites = (state, payload) => {
   } 
   return { ...state, favorites: [...payload] };
 }
+
 // Create context
 export const MoviesContext = createContext();
 

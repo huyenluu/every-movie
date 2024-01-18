@@ -13,7 +13,7 @@ const Search = ({ onSearch }) => {
     onSearch(query).then(() => {
         setHasResults(true);
     });
-  }, 500), [onSearch]); // 500 ms
+  }, 500), [onSearch]);
 
   useEffect(() => {
     if (inputValue && !hasResults) {
@@ -24,22 +24,18 @@ const Search = ({ onSearch }) => {
     };
   }, [inputValue, debouncedSearch, hasResults]);
 
-  useEffect(() => {
-    if (inputValue === "") {
-      setHasResults(false);
-      onSearch(""); // Reset the search
-    }
-  }, [inputValue, onSearch]);
-
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     setHasResults(false);
+    if(event.target.value === "") {
+      handleClear();
+    }
   };
 
   const handleClear = () => {
     setInputValue("");
     setHasResults(false);
-    onSearch(""); // Reset the search
+    onSearch("");
   };
 
   return (
