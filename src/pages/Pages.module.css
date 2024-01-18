@@ -17,7 +17,7 @@
     width: 100%;
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: rgb(var(--color-light-grey));
     text-align: left;
 }
@@ -32,3 +32,19 @@
     cursor: pointer;
 }
 
+.movie-grid-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.no-movies {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgb(var(--color-light-grey));
+    margin-top: 5rem;
+}
