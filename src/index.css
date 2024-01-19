@@ -111,3 +111,7 @@ a:hover, a:focus, a:active {
     --font-size-xl: 2.5rem; /* 40px */
   }
 }
+
+.hidden {
+  display: none;
+}

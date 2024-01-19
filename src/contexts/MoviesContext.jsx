@@ -54,9 +54,13 @@ const setFavorites = (state, payload) => {
 }
 
 const setMovies = (state, payload) => {
-  const newMovies = payload;
-  const updatedMovies = [...state.movies, ...newMovies.filter(movie => !state.movies.some(m => m.id === movie.id))];
-  return { ...state, movies: updatedMovies };
+  if( payload.page === 1 ) {
+    return { ...state, movies: payload.results };
+  } else {
+    const newMovies = payload.results;
+    const updatedMovies = [...state.movies, ...newMovies.filter(movie => !state.movies.some(m => m.id === movie.id))];
+    return { ...state, movies: updatedMovies };
+  }
 };
 
 // Create context

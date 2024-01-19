@@ -9,8 +9,12 @@ import GenresSelect from "../../components/GenresSelector/GenresSelect";
 import styles from "../Pages.module.css";
 
 const HomePage = () => {
-  const { state, dispatch, loadMovies, handleSearch } =
-    useContext(MoviesContext);
+  const { 
+    state, 
+    dispatch, 
+    loadMovies, 
+    handleSearch 
+  } = useContext(MoviesContext);
   const { movies, searchResults, isLoading, error } = state;
   const [currentPage, setCurrentPage] = useState(1);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -27,7 +31,7 @@ const HomePage = () => {
   
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset < 100) { // adjust this value as needed
+      if (window.scrollY < 100) {
         setScrollPosition(0);
       }
     };
@@ -82,9 +86,7 @@ const HomePage = () => {
           )}
         </section>
       )}
-      <div ref={loader} className={styles["loader-pages"]}>
-        Loading more movies...
-      </div>
+      <div ref={loader} className={searchResults.length > 0 ? "hidden" : styles["loader-pages"]}>Loading more movies...</div>
     </main>
   );
 };
