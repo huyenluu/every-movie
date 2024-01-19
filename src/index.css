@@ -1,24 +1,39 @@
 @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Manrope", sans-serif;
   font-weight: 400;
-
-  color-scheme: light dark;
-  --color-white: #fff;
-  --color-red: 193,7,30;
-
-  --color-dark-grey: 19,24,52 ;
-  --color-mid-grey: 67,70,94;
-  --color-light-grey: 222,222,222;
-
-  --padding-inline-mobile: 1.5rem;
-
+  line-height: 1.6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* colors */
+  /* except white and black other colors are RGB values */
+  color-scheme: light dark;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-red: 193,7,30;
+  --color-dark-grey: 19,24,52 ;
+  --color-mid-grey: 67,70,94;
+  --color-light-grey: 222,222,222;
+
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem;  /* 8px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 2rem;    /* 32px */
+  --spacing-xl: 4rem;    /* 64px */
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-xl: 1.5rem; /* 24px */
+
 }
 
 
@@ -28,19 +43,13 @@
   box-sizing: inherit;
 }
 
-html {
-  font-size: 62.5%;
+* {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Manrope", sans-serif;
-  color: var(--color-light--2);
-  font-weight: 400;
-  line-height: 1.6;
   background-color: rgb(var(--color-dark-grey));
   color: var(--color-white);
-  font-size: 1.6rem;
 }
 button {
   background: none; 
@@ -63,15 +72,42 @@ a:hover, a:focus, a:active {
   text-decoration: none;
 }
 
-/* @media (prefers-color-scheme: light) {
+@media screen and (min-width: 768px) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --spacing-xs: 0.5rem; /* 8px */
+    --spacing-sm: 1rem;   /* 16px */
+    --spacing-md: 2rem;   /* 32px */
+    --spacing-lg: 4rem;   /* 64px */
+    --spacing-xl: 10rem;   /* 128px */
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --spacing-xs: 1rem;   /* 16px */
+    --spacing-sm: 2rem;   /* 32px */
+    --spacing-md: 4rem;   /* 64px */
+    --spacing-lg: 8rem;   /* 128px */
+    --spacing-xl: 16rem;  /* 256px */
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --font-size-xs: 0.875rem; /* 14px */
+    --font-size-sm: 1rem; /* 16px */
+    --font-size-md: 1.25rem; /* 20px */
+    --font-size-lg: 1.5rem; /* 24px */
+    --font-size-xl: 2rem; /* 32px */
   }
-} */
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --font-size-xs: 1rem; /* 16px */
+    --font-size-sm: 1.1rem; /* 18px */
+    --font-size-md: 1.5rem; /* 24px */
+    --font-size-lg: 2rem; /* 32px */
+    --font-size-xl: 2.5rem; /* 40px */
+  }
+}

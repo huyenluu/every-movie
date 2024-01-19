@@ -18,7 +18,7 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
     const thumbnailRef = useRef(null);
     const titleRef = useRef(null);
     const width = thumbnailRef.current ? thumbnailRef.current.offsetWidth : 450;
-    titleRef.current = title ? truncate(title, `${width <= 450 ? 16 : 24}`) : '--';
+    titleRef.current = title ? truncate(title, `${width <= 450 ? 35 : 40}`) : '--';
 
     const handleAddToFavorites = async () => {
         // Check if the movie is already in favorites
@@ -46,7 +46,9 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
         id="movie-thumbnails"
         className={styles["movie-thumbnail"]}
       >
-        <img src={imagePath} alt={title}  />
+        <div className={styles["img-holder"]}>
+          <img src={imagePath} alt={title}  />
+        </div>
         <h3 className={styles["title"]}>{titleRef.current}</h3>
         <div className={styles["action-section"]}>
           <p>{releaseDate ? calcYear(releaseDate) : "--"}</p>

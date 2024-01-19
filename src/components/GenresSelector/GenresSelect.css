@@ -2,7 +2,7 @@
 .genre-select {
     text-align: right;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: var(--font-size-md);
     margin-bottom: 1rem;
     color: rgb(var(--color-light-grey));
 }
@@ -18,7 +18,7 @@
     gap: 0.5rem;
 }
 .select__indicators {
-    margin-top: 1px;
+    margin-top: 3px;
     margin-left: 1rem;
     align-self: flex-start !important;
 }
@@ -29,7 +29,7 @@
 .select__multi-value {
    border: 1px solid rgb(var(--color-mid-grey));
    border-radius: 3px;
-   font-size: 1.2rem;
+   font-size: var(--font-size-sm);
 }
 .select__menu {
     background-color: rgb(var(--color-mid-grey));
@@ -40,12 +40,18 @@
     
 }
 .select__option {
-    font-size: 1.2rem;
-    padding: 6px 12px;
+    font-size: var(--font-size-sm);
+    padding: .5rem 1rem;
     cursor: pointer;
     text-align: left;
     border-bottom: 1px solid rgb(var(--color-dark-grey));
 }
 .select__option:hover {
     background-color: rgb(var(--color-dark-grey));
+}
+
+@media screen and (min-width: 768px) {
+    .select__indicators {
+        margin-top: 10px;
+    }
 }

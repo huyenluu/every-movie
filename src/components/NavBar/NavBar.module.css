@@ -3,8 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--padding-inline-mobile);
-    height: 8rem;
+    padding: var(--spacing-md);
+    height: 5rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 .logo {
@@ -13,16 +15,16 @@
     justify-content: center;
 }
 .logo h1 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
     font-weight: 800;
     color: var(--color-white);
-    width: 10rem;
+    width: 4rem;
     line-height: 0.9;
 }
 .logoIcon {
-    width: 3rem;
-    height: 3rem;
-    margin-right: 1rem;
+    width: var(--font-size-xl);
+    height: var(--font-size-xl);
+    margin-right: var(--spacing-sm);
 }
 .search-bar {
     flex: 1;
@@ -30,35 +32,35 @@
     align-items: center;
     justify-content: flex-end;
     position: relative;
-    margin-right: 2rem;
+    margin-right: var(--spacing-md);
 }
 .search-input {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 2.5rem;
-    width: 13rem;
+    height: 1.5rem;
+    width: 7rem;
     border-radius: 3px;
     border: 1px solid rgb(var(--color-light-grey));
     background-color: rgb(var(--color-mid-grey));
-    padding: 0.5rem;
+    padding: 1rem;
     color: var(--color-white);
-    font-size: 1.2rem;
+    font-size: var(--font-size-xs);
     transition: width 0.3s ease;
 }
 
 .search-input:active,
 .search-input:focus {
-    width: 18rem;
+    width: 10rem;
     outline: none;
 }
 .clear-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
     cursor: pointer;
     position:absolute;
-    top: 5px;
-    right: 5px;
+    top: 9px;
+    right: 9px;
     fill: rgb(var(--color-light-grey));
 }
 
@@ -66,8 +68,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
-    margin-right: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
     cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .navBar {
+        height: 8rem;
+    }
+    .search-input {
+      width: 18rem;
+    }
+    .search-input:active,.search-input:focus {
+      width: 22rem;
+    }
+}
+  
+@media screen and (min-width: 1024px) {
+    .navBar {
+      padding-inline: var(--spacing-lg);
+      height: 10rem;
+    }
+    .heart-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 }
