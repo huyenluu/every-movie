@@ -16,7 +16,7 @@ const initialState = {
 const moviesReducer = (state, action) => {
   switch (action.type) {
     case "SET_MOVIES":
-      return { ...state, movies: action.payload };
+      return setMovies(state, action.payload);
     case "SET_FAVORITES":
       return setFavorites(state, action.payload);
     case "REMOVE_FAVORITE":
@@ -53,6 +53,12 @@ const setFavorites = (state, payload) => {
   return { ...state, favorites: [...payload] };
 }
 
+const setMovies = (state, payload) => {
+  const newMovies = payload;
+  const updatedMovies = [...state.movies, ...newMovies.filter(movie => !state.movies.some(m => m.id === movie.id))];
+  return { ...state, movies: updatedMovies };
+};
+
 // Create context
 export const MoviesContext = createContext();
 
@@ -80,7 +86,7 @@ export const MoviesProvider = ({ children }) => {
         data = await fetchMoviesByGenres(params);
       }
       else if ( type === 'default' ) {
-        data = await fetchDefaultMovies();
+        data = await fetchDefaultMovies(params);
       }
       
       dispatch({ type: "SET_MOVIES", payload: data });
