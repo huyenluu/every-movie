@@ -4,14 +4,19 @@ import MovieGrid from "../../components/Movie/MovieGrid";
 import NavBar from "../../components/NavBar/NavBar";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+
 import styles from "../Pages.module.css";
+
 const Favorites = () => {
   const { state, loadMovies } = useContext(MoviesContext);
   const { movies, favorites } = state;
-  // fetch movies based on favorites if movies is empty
+
+  // Load movies on initial render
   useEffect(() => {
-      loadMovies('default');
-  }, [loadMovies]);
+      if (movies.length === 0) {
+        loadMovies('default')
+      }
+  }, [loadMovies, movies]);
   const favoritesMovies = movies ? movies.filter((movie) => favorites.includes(movie.id)) : [];
   return (
     <main className={styles.appContainer}>

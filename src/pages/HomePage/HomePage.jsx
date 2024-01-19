@@ -20,15 +20,17 @@ const HomePage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const loader = useRef(null);
 
+  // Load movies on initial render and when currentPage changes
   useEffect(() => {
     loadMovies("default", currentPage);
   }, [loadMovies, currentPage]);
 
+  // Scroll to previous scroll position when movies change
   useEffect(() => {
-    console.log("scrollPosition", scrollPosition);
     window.scrollTo(0, scrollPosition);
   }, [movies, scrollPosition]);
   
+  // Handle scroll event to set scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 100) {
@@ -43,10 +45,11 @@ const HomePage = () => {
     };
   }, []);
 
+  // Intersection observer to load more movies when reaching the end of the page (loader)
   const handleObserver = (entities) => {
     const target = entities[0];
     if (target.isIntersecting) {
-      setScrollPosition(window.pageYOffset);
+      setScrollPosition(window.scrollY);
       setCurrentPage((prev) => prev + 1);
     }
   };
@@ -60,6 +63,7 @@ const HomePage = () => {
     };
   }, []);
 
+  // Handle genre change and load movies based on selected genres
   const handleGenreChange = (arr) => {
     dispatch({ type: "SET_GENRES", payload: arr });
     loadMovies("genres", arr);
