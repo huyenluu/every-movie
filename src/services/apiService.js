@@ -1,10 +1,20 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 const baseURL = "https://api.themoviedb.org/3";
+const requests = {
+  // Movies all
+  fetchAllMovies: `/discover/movie?api_key=${API_KEY}`,
+  // get movie based on genres
+  getMovieGenres: `/discover/movie?api_key=${API_KEY}&with_genres=`,
+  // Search
+  searchMovies: `/search/movie?api_key=${API_KEY}`,
+  // get genres list
+  getGenresList: `/genre/movie/list?language=en&api_key=${API_KEY}`,
+};
 
 // fetch default list of movies
-export const fetchDefaultMovies = async (page = 1) => {
+export const fetchDefaultMovies = async () => {
   try {
-    const response = await fetch(`${baseURL}/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=${page}`);
+    const response = await fetch(`${baseURL}${requests.fetchAllMovies}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -19,7 +29,7 @@ export const fetchDefaultMovies = async (page = 1) => {
 export const searchMovies = async (query) => {
   try {
     const response = await fetch(
-      `${baseURL}/search/movie?api_key=${API_KEY}&query=${query}`
+      `${baseURL}${requests.searchMovies}&query=${query}`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -37,7 +47,7 @@ export const searchMovies = async (query) => {
 // fetch movie genres
 export const fetchGenres = async () => {
   try {
-    const response = await fetch(`${baseURL}/genre/movie/list?language=en&api_key=${API_KEY}`);
+    const response = await fetch(`${baseURL}${requests.getGenresList}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -53,7 +63,7 @@ export const fetchMoviesByGenres = async (genreIds) => {
     // Convert the array of genre IDs to a comma-separated string
     const genreIdsString = genreIds.join(",");
     const response = await fetch(
-      `${baseURL}/discover/movie?api_key=${API_KEY}&with_genres=${genreIdsString}`
+      `${baseURL}${requests.getMovieGenres}${genreIdsString}`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
