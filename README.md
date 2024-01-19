@@ -4,7 +4,7 @@ Every Movie is a lobby type application that showcases movies from the [TMDB API
 
 ## Demo
 
-Check out the live demo of the application [here](---).
+Check out the live demo of the application [HERE](https://every-movie.vercel.app/).
 
 ## Installation
 
