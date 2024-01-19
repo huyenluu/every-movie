@@ -12,7 +12,7 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
     
     const { state, dispatch } = useContext(MoviesContext);
     const { favorites } = state;
-    const [isFavorite, setIsFavorite] = useState(favorites.includes(id));
+    const [isFavorite, setIsFavorite] = useState(favorites.find(obj => obj.id === id));
 
     // Truncate the title if it's too long
     const thumbnailRef = useRef(null);
@@ -21,6 +21,12 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
     titleRef.current = title ? truncate(title, `${width <= 450 ? 35 : 40}`) : '--';
 
     const handleAddToFavorites = async () => {
+        const favoritePayload = {
+          id,
+          title,
+          'poster_path': posterPath,
+          'release_date': releaseDate
+        };
         // Check if the movie is already in favorites
         if (isFavorite) {
             // Remove the movie from favorites
@@ -28,7 +34,7 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
             setIsFavorite(false);
         } else {
             // Add the movie to favorites
-            dispatch({ type: 'SET_FAVORITES', payload: id });
+            dispatch({ type: 'SET_FAVORITES', payload:favoritePayload });
             setIsFavorite(true);
         }
     };
@@ -52,7 +58,7 @@ const MovieThumbnail = ({ id, title, posterPath, releaseDate }) => {
         <h3 className={styles["title"]}>{titleRef.current}</h3>
         <div className={styles["action-section"]}>
           <p>{releaseDate ? calcYear(releaseDate) : "--"}</p>
-          <button onClick={() => handleAddToFavorites(id)}>
+          <button onClick={handleAddToFavorites}>
             {isFavorite ? (
               <TbHeartX className={styles["heart-x-icon"]} />
             ) : (

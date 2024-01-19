@@ -54,7 +54,7 @@ const HomePage = () => {
     }
   };
   useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, { threshold: 1 });
+    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 });
     if (loader.current) {
       observer.observe(loader.current);
     }
@@ -74,7 +74,7 @@ const HomePage = () => {
       <NavBar onSearch={handleSearch} haveSearchBar />
       {isLoading && <Loading />}
       {error && <ErrorMessage message={error} />}
-      {!isLoading && searchResults.length >= 1 && (
+      {!isLoading && !error && searchResults.length >= 1 && (
         <section className={styles.appLayout}>
           <h3 className={styles["page-title"]}>Search Results</h3>
           <MovieGrid movies={searchResults} />

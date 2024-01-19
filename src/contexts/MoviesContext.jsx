@@ -22,7 +22,7 @@ const moviesReducer = (state, action) => {
     case "REMOVE_FAVORITE":
       return {
         ...state,
-        favorites: state.favorites.filter((id) => id !== action.payload),
+        favorites: state.favorites.filter(obj => obj.id !== action.payload),
       };
     case "CLEAR_FAVORITES":
       return { ...state, favorites: [] };
@@ -47,10 +47,11 @@ const moviesReducer = (state, action) => {
 
 // This function is used to check if the payload is an array or not and return the correct state
 const setFavorites = (state, payload) => {
-  if ( typeof payload !== "object") {
-    return { ...state, favorites: [...state.favorites, payload] };
+  console.log(payload);
+  if ( Array.isArray(payload)) {
+    return { ...state, favorites: [...payload] };
   } 
-  return { ...state, favorites: [...payload] };
+  return { ...state, favorites: [...state.favorites, payload] };
 }
 
 const setMovies = (state, payload) => {
@@ -72,6 +73,7 @@ export const MoviesProvider = ({ children }) => {
   // get and set favorites from local storage
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("LC-favorites"));
+    console.log(favorites);
     if(favorites && favorites.length > 0) {
       dispatch({ type: "SET_FAVORITES", payload: favorites });
     }
