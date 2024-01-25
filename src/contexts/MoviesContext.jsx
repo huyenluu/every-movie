@@ -47,7 +47,6 @@ const moviesReducer = (state, action) => {
 
 // This function is used to check if the payload is an array or not and return the correct state
 const setFavorites = (state, payload) => {
-  console.log(payload);
   if ( Array.isArray(payload)) {
     return { ...state, favorites: [...payload] };
   } 
@@ -73,7 +72,6 @@ export const MoviesProvider = ({ children }) => {
   // get and set favorites from local storage
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("LC-favorites"));
-    console.log(favorites);
     if(favorites && favorites.length > 0) {
       dispatch({ type: "SET_FAVORITES", payload: favorites });
     }

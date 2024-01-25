@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { MoviesContext } from "../../contexts/MoviesContext";
+import PropTypes from "prop-types";
 import NavBar from "../../components/NavBar/NavBar";
-import MovieGrid from "../../components/Movie/MovieGrid";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import GenresSelect from "../../components/GenresSelector/GenresSelect";
-
+import Search from "../../components/Search/Search";
+import AppLayout from "../../components/AppLayout/AppLayout";
 import styles from "../Pages.module.css";
 
 const HomePage = () => {
@@ -31,6 +32,7 @@ const HomePage = () => {
   }, [movies, scrollPosition]);
   
   // Handle scroll event to set scroll position
+  // Reset scroll position when user scrolls to top of page
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 100) {
@@ -71,28 +73,35 @@ const HomePage = () => {
 
   return (
     <main className={styles.appContainer}>
-      <NavBar onSearch={handleSearch} haveSearchBar />
-      {isLoading && <Loading />}
-      {error && <ErrorMessage message={error} />}
-      {!isLoading && !error && searchResults.length >= 1 && (
-        <section className={styles.appLayout}>
-          <h3 className={styles["page-title"]}>Search Results</h3>
-          <MovieGrid movies={searchResults} />
-        </section>
-      )}
-      {!isLoading && movies && !error && searchResults.length === 0 && (
-        <section className={styles.appLayout}>
-          <h3 className={styles["page-title"]}>Popular Movies</h3>
-          <GenresSelect onChange={(arr) => handleGenreChange(arr)} />
-          <MovieGrid movies={movies} />
-          {movies.length === 0 && (
-            <p className={styles["no-movies"]}>No movies found</p>
-          )}
-        </section>
-      )}
-      <div ref={loader} className={searchResults.length > 0 ? "hidden" : styles["loader-pages"]}>Loading more movies...</div>
+      <NavBar>
+        <Search onSearch={handleSearch}/>
+      </NavBar>
+      <Content isLoading={isLoading} error={error} searchResults={searchResults} movies={movies} handleGenreChange={handleGenreChange} />
+      <div ref={loader} className={searchResults.length > 0 && movies.length === 0? "hidden" : styles["loader-pages"]}>Loading more movies...</div>
     </main>
   );
 };
 
+const Content = ({ isLoading, error, searchResults, movies, handleGenreChange }) => {
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorMessage message={error} />;
+  if (searchResults.length >= 1) return (
+    <AppLayout movies={searchResults} title="Search Results"/>
+  );
+  if (movies) return( 
+    <AppLayout movies={movies} title="Popular Movies" noMoviesMessage="Sorry! No Movies Available">
+      <GenresSelect onChange={(arr) => handleGenreChange(arr)} />
+    </AppLayout>
+  );
+  return <ErrorMessage message="Something went wrong!"/>;
+};
+
 export default HomePage;
+
+Content.propTypes = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  searchResults: PropTypes.array,
+  movies: PropTypes.array,
+  handleGenreChange: PropTypes.func
+};

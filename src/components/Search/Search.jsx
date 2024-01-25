@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import propTypes from "prop-types";
 import debounce from "lodash.debounce";
 import { MdClear } from "react-icons/md";
-import styles from "./NavBar.module.css";
+import styles from "./Search.module.css";
 
 const Search = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState("");

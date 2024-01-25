@@ -3,10 +3,9 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BiMoviePlay } from "react-icons/bi";
 import { RiHeartLine } from "react-icons/ri";
-import Search from './Search';
 import styles from './NavBar.module.css';
 
-const NavBar = ({onSearch, haveSearchBar}) => {
+const NavBar = ({children}) => {
     return (
         <div className={styles.navBar}>
             <Link to="/">
@@ -15,7 +14,7 @@ const NavBar = ({onSearch, haveSearchBar}) => {
                     <h1>Every Movie</h1>
                 </div>
             </Link>
-            {haveSearchBar && <Search onSearch={onSearch}/>}
+            {children}
             <Link to="/favorites">
                 <RiHeartLine className={styles['heart-icon']} />
             </Link>
@@ -26,6 +25,5 @@ const NavBar = ({onSearch, haveSearchBar}) => {
 export default NavBar;
 
 NavBar.propTypes = {
-    onSearch: propTypes.func,
-    haveSearchBar: propTypes.bool
+    children: propTypes.element
 }

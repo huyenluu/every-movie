@@ -1,0 +1,17 @@
+.appLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: var(--spacing-md);
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    width: 100%;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: rgb(var(--color-light-grey));
+    text-align: left;
+}
